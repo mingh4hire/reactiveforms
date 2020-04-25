@@ -9,14 +9,16 @@ import { FormBuilder, Validators, FormGroup } from "@angular/forms";
 export class AppComponent {
   name = "Angular";
   fg: FormGroup;
-  constructor(fb: FormBuilder) {
+  constructor(fb: FormBuilder) { 
     this.fg = fb.group(
       {
         a: [null, Validators.pattern("abcd[1-9]")],
         b: [null, Validators.required]
       },
+      () => 
       (fgg: FormGroup) => {
-        fgg.setErrors({ a: 23423 });
+        // return {a:23423};
+        fgg.get('b').setErrors({ a: 23423 });
       }
     );
   }
